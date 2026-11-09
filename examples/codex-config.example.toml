@@ -1,0 +1,18 @@
+# Codex CLI / GUI 接 A2 网关的最小配置（占位符，不含地址与 Key）
+# 位置：~/.codex/config.toml
+
+model_provider = "custom"
+model = "<known-good-model-id>"
+
+[model_providers.custom]
+name = "A2 Gateway"
+
+# Codex >= 0.167 起，自定义 provider 不再自动复用 ~/.codex/auth.json 里的 Key。
+# 必须显式声明 env_key，并保证该环境变量在进程启动时可见（用户级环境变量或启动脚本注入）。
+env_key = "OPENAI_API_KEY"
+
+# <host> / <port> 由本地凭据 txt 提供，不要写进任何会被提交的文件。
+base_url = "http://<host>:3000/openai-codex-oauth/v1"
+
+# codex-oauth 只接受 responses 协议；写成 chat 会在网关侧失败。
+wire_api = "responses"

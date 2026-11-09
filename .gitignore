@@ -1,0 +1,12 @@
+# 凭据永不入库
+a2-subkey*.txt
+!examples/a2-subkey.example.txt
+credentials*/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# 本地运行产物
+*.log
+evidence/
